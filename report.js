@@ -1,11 +1,12 @@
 import { Telegraf } from "telegraf";
 import cron from "node-cron";
-import dotenv from "dotenv";
-dotenv.config();
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
-const TARGET_CHAT_ID = process.env.TARGET_CHAT_ID; // Public channel to monitor
-const LOG_CHANNEL_ID = "-1002941317670"; // Your private channel
+// --- CONFIG ---
+const BOT_TOKEN = process.env.BOT_TOKEN; // your bot token in Railway variables
+const TARGET_CHAT_ID = "@oxyfinds01"; // Public channel username
+const LOG_CHANNEL_ID = "-1002941317670"; // Your private channel ID
+
+const bot = new Telegraf(BOT_TOKEN);
 
 // In-memory counters
 let counters = { total: 0, admins: {} };
@@ -39,10 +40,14 @@ bot.on("channel_post", async (ctx) => {
     if (!counters.admins[admin.id]) counters.admins[admin.id] = 0;
     counters.admins[admin.id]++;
   }
+
+  console.log(`📥 Message counted. Total so far: ${counters.total}`);
 });
 
 // --- Send daily report at 00:00 UTC ---
 cron.schedule("0 0 * * *", async () => {
+  console.log("🕛 Sending daily report...");
+
   let report = `📊 **Daily Channel Report** (UTC)\n\n📩 Total messages: ${counters.total}\n\n`;
 
   if (channelAdmins.length > 0) {
