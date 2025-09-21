@@ -1,10 +1,10 @@
 {
   "name": "loverpack-telegram-bot",
   "version": "1.0.0",
-  "main": "bot.js",
+  "main": "report.js",
   "type": "module",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node report.js"
   },
   "puppeteer": {
     "args": [
