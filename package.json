@@ -1,0 +1,29 @@
+{
+  "name": "loverpack-telegram-bot",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "type": "module",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "puppeteer": {
+    "args": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ]
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "cheerio": "^1.1.2",
+    "dotenv": "^17.2.2",
+    "input": "^1.0.1",
+    "json2csv": "^6.0.0-alpha.2",
+    "mongoose": "^8.16.1",
+    "node-cron": "^4.2.1",
+    "node-fetch": "^3.3.2",
+    "papaparse": "^5.5.3",
+    "puppeteer": "^24.22.0",
+    "telegraf": "^4.16.3",
+    "telegram": "^2.26.22"
+  }
+}
